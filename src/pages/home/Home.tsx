@@ -1,38 +1,50 @@
+import React from "react";
+import { motion } from "framer-motion";
+
 function Home() {
     return (
         <>
-            <div style={{
-                width: "100vw",
-                display: "flex",
-                justifyContent: "center"
-            }}>
-                <div>
-                    <div style={{
-                         width: "80vw",
-                         display: "flex",
-                         flexDirection: "column",
-                         alignItems: "center"
-                    }}>
-                        <h2>Seja Bem Vindo!</h2>
-                        <p>Aqui você pode compartilhar ideias, reflexões e histórias únicas</p>
+            <div className="bg-slate-800 flex justify-center">
+                <div className="container grid grid-cols-2 text-white">
+                    <div className="flex flex-col gap-4 items-center justify-center py-4">
+                        <h2 className="text-5xl font-bold">
+                            Seja Bem Vindo!
+                        </h2>
+                        <p className="text-xl">
+                            Aqui você pode expressar seus pensamentos, opiniões e histórias únicas.
+                        </p>
+
+                        <div className="flex justify-around gap-4">
+                            <motion.div
+                                className="bg-slate-700 relative rounded font-bold text-white border-white border-solid border-2 py-2 px-4 cursor-pointer flex items-center justify-center group"
+                                whileHover={{
+                                    scale: 1.1,
+                                }}
+                                whileTap={{
+                                    scale: 0.95,
+                                }}
+                            >
+                                <span className="transition-all duration-500 ease-in-out transform group-hover:translate-x-10 group-hover:opacity-0">
+                                    Nova Postagem
+                                </span>
+                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                                    ✍🏻
+                                </div>
+                            </motion.div>
+                        </div>
                     </div>
 
-                    <div style={{
-                         width: "80vw",
-                         display: "flex",
-                         flexDirection: "column",
-                         alignItems: "center"
-                    }}>
-                        <img 
-                            src="https://i.imgur.com/VpwApCU.png" 
-                            alt="Imagem da Página Home" 
-                            width="400px"
+                    <div className="flex justify-center">
+                        <img
+                            src="https://i.imgur.com/fyfri1v.png"
+                            alt="Imagem Página Home"
+                            className="w-2/3"
                         />
                     </div>
                 </div>
             </div>
         </>
-    )
+    );
 }
 
-export default Home
+export default Home;
