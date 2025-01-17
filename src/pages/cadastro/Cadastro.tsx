@@ -103,7 +103,7 @@ function Cadastro() {
           </div>
 
           <div className="flex flex-col w-full">
-            <label htmlFor="foto" className="text-white">Foto*</label>
+            <label htmlFor="foto" className="text-white">Foto</label>
             <div className="p-[2px] bg-gradient-to-r from-purple-500 to-indigo-500 rounded">
               <input
                 type="text"
