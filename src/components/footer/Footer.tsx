@@ -1,4 +1,4 @@
-import { FacebookLogo, InstagramLogo, LinkedinLogo } from '@phosphor-icons/react'
+import { FacebookLogo, GithubLogo, InstagramLogo, LinkedinLogo } from '@phosphor-icons/react'
 
 function Footer() {
     let data = new Date().getFullYear()
@@ -21,10 +21,10 @@ function Footer() {
                             weight='bold' 
                             className="transition-all duration-300 transform hover:scale-110 hover:text-pink-500" 
                         />
-                        <FacebookLogo 
+                        <GithubLogo 
                             size={48} 
                             weight='bold' 
-                            className="transition-all duration-300 transform hover:scale-110 hover:text-blue-700" 
+                            className="transition-all duration-300 transform hover:scale-110 hover:text-yellow-700" 
                         />
                     </div>
                 </div>

@@ -25,15 +25,15 @@ function Navbar() {
                             Postagens
                         </div>
                         <div className="transition-all duration-300 hover:scale-110 hover:text-violet-500">
-                            Temas
+                            <Link to='/temas' className='hover:underline'>Temas</Link>
                         </div>
                         <div className="transition-all duration-300 hover:scale-110 hover:text-violet-500">
-                            Novo tema
+                            <Link to='/cadastrartema' className='hover:underline'>Novo tema</Link>
                         </div>
                         <div className="transition-all duration-300 hover:scale-110 hover:text-violet-500">
                             Perfil
                         </div>
-                        <Link to='' onClick={logout} className="transition-all duration-300 hover:scale-110 hover:text-violet-500">
+                        <Link to='' onClick={logout} className="hover:underline transition-all duration-300 hover:scale-110 hover:text-violet-500">
                             Sair
                         </Link>
                     </div>
