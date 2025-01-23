@@ -37,7 +37,7 @@ function Login() {
         <>
             <div className="grid grid-cols-1 lg:grid-cols-2 h-screen place-items-center font-bold bg-slate-800">
                 <form className="flex justify-center items-center flex-col w-2/3 gap-6" onSubmit={login}>
-                    <h2 className="text-white text-5xl">Entrar</h2>
+                    <h2 className="text-white text-5xl">Login</h2>
 
                     <div className="flex flex-col w-full">
                         <label htmlFor="usuario" className="text-white">Usuário*</label>
@@ -69,19 +69,22 @@ function Login() {
                         </div>
                     </div>
 
-                    <button
-                        type="submit"
-                        className="rounded bg-indigo-400 flex justify-center hover:bg-indigo-900 text-white w-1/2 py-2">
-                        {isLoading ? <RotatingLines
-                            strokeColor="white"
-                            strokeWidth="5"
-                            animationDuration="0.75"
-                            width="24"
-                            visible={true}
-                        /> :
-                            <span>Entrar</span>
-                        }
-                    </button>
+                    <div className="custom-button-wrapper">
+                        <button type="submit" className="custom-button">
+                            {isLoading ? (
+                                <RotatingLines
+                                    strokeColor="white"
+                                    strokeWidth="5"
+                                    animationDuration="0.75"
+                                    width="24"
+                                    visible={true}
+                                />
+                            ) : (
+                                <span>Entrar</span>
+                            )}
+                        </button>
+                    </div>
+
 
                     <hr className="border-slate-700 w-full" />
 

@@ -8,7 +8,7 @@ function Footer() {
             <div className="flex justify-center bg-slate-900 text-white">
                 <div className="container flex flex-col items-center py-4">
                     <p className='text-xl font-bold'>
-                        Blog Pessoal | Copyright: &copy; {new Date().getFullYear()}
+                        Blog Pessoal | Vinicius | Copyright: &copy; {new Date().getFullYear()}
                     </p>
                     <div className='flex gap-6 mt-5'>
                         <LinkedinLogo 
