@@ -85,7 +85,6 @@ function Login() {
                         </button>
                     </div>
 
-
                     <hr className="border-slate-700 w-full" />
 
                     <p className="text-white">

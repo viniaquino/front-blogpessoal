@@ -1,9 +1,10 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Usuario from '../../models/Usuario'
 import { cadastrarUsuario } from '../../service/Service'
 import './Cadastro.css'
 import { RotatingLines } from 'react-loader-spinner'
+import { ToastAlerta } from '../../utils/ToastAlerta'
 
 function Cadastro() {
 
@@ -51,12 +52,12 @@ function Cadastro() {
 
       try{
         await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuario)
-        alert('Usuário cadastrado com sucesso!')
+        ToastAlerta('Usuário cadastrado com sucesso!', 'info')
       }catch(error){
-        alert('Erro ao cadastrar o usuário!')
+        ToastAlerta('Erro ao cadastrar o usuário!', 'info')
       }
     }else{
-      alert('Dados do usuário inconsistentes! Verifique as informações do cadastro.')
+      ToastAlerta('Dados do usuário inconsistentes! Verifique as informações do cadastro.', 'info')
       setUsuario({...usuario, senha: ''})
       setConfirmaSenha('')
     }
@@ -168,6 +169,12 @@ function Cadastro() {
               }
             </button>
           </div>
+          <p className="text-white">
+              Já possui uma conta ?{' '}
+            <Link to="/login" className="text-indigo-400 hover:text-indigo-500 cursor-pointer">
+              Faça o login
+            </Link>
+          </p>
         </form>
       </div>
     </>

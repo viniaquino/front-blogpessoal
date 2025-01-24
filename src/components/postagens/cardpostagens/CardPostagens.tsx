@@ -7,8 +7,7 @@ interface CardPostagensProps {
 
 function CardPostagem({ postagem }: CardPostagensProps) {
     return (
-        <div className='border-slate-900 border 
-            flex flex-col rounded overflow-hidden justify-between'>
+        <div className='border-white border flex flex-col rounded overflow-hidden justify-between'>
                 
             <div>
                 <div className="flex w-full bg-indigo-600 py-2 px-4 items-center gap-4 text-white">

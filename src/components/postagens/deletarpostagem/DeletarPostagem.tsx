@@ -4,6 +4,7 @@ import { AuthContext } from "../../../contexts/AuthContext"
 import Postagem from "../../../models/Postagem"
 import { buscar, deletar } from "../../../service/Service"
 import { RotatingLines } from "react-loader-spinner"
+import { ToastAlerta } from "../../../utils/ToastAlerta"
 
 function DeletarPostagem() {
 
@@ -33,7 +34,7 @@ function DeletarPostagem() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado')
+            ToastAlerta('Você precisa estar logado', 'info')
             navigate('/')
         }
     }, [token])
@@ -54,13 +55,13 @@ function DeletarPostagem() {
                 }
             })
 
-            alert('Postagem apagada com sucesso')
+            ToastAlerta('Postagem apagada com sucesso', 'info')
 
         } catch (error: any) {
             if (error.toString().includes('403')) {
                 handleLogout()
             }else {
-                alert('Erro ao deletar a postagem.')
+                ToastAlerta('Erro ao deletar a postagem.', 'info')
             }
         }
 
@@ -73,7 +74,7 @@ function DeletarPostagem() {
     }
     
     return (
-        <div className='container w-1/3 mx-auto'>
+        <div className='container w-1/3 mx-auto text-white'>
             <h1 className='text-4xl text-center my-4'>Deletar Postagem</h1>
 
             <p className='text-center font-semibold mb-4'>
@@ -85,7 +86,7 @@ function DeletarPostagem() {
                     className='py-2 px-6 bg-indigo-600 text-white font-bold text-2xl'>
                     Postagem
                 </header>
-                <div className="p-4">
+                <div className="p-4 bg-slate-900">
                     <p className='text-xl h-full'>{postagem.titulo}</p>
                     <p>{postagem.texto}</p>
                 </div>

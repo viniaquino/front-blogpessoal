@@ -5,6 +5,7 @@ import Postagem from "../../../models/Postagem";
 import Tema from "../../../models/Tema";
 import { buscar, atualizar, cadastrar } from "../../../service/Service";
 import { RotatingLines } from "react-loader-spinner";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function FormPostagem() {
 
@@ -59,7 +60,7 @@ function FormPostagem() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado');
+            ToastAlerta('Você precisa estar logado', 'info');
             navigate('/');
         }
     }, [token])
@@ -104,13 +105,13 @@ function FormPostagem() {
                     },
                 });
 
-                alert('Postagem atualizada com sucesso')
+                ToastAlerta('Postagem atualizada com sucesso','info')
 
             } catch (error: any) {
                 if (error.toString().includes('403')) {
                     handleLogout()
                 } else {
-                    alert('Erro ao atualizar a Postagem')
+                    ToastAlerta('Erro ao atualizar a Postagem', 'info')
                 }
             }
 
@@ -122,13 +123,13 @@ function FormPostagem() {
                     },
                 })
 
-                alert('Postagem cadastrada com sucesso');
+                ToastAlerta('Postagem cadastrada com sucesso', 'info');
 
             } catch (error: any) {
                 if (error.toString().includes('403')) {
                     handleLogout()
                 } else {
-                    alert('Erro ao cadastrar a Postagem');
+                    ToastAlerta('Erro ao cadastrar a Postagem', 'info');
                 }
             }
         }
@@ -140,70 +141,79 @@ function FormPostagem() {
     const carregandoTema = tema.descricao === '';
 
     return (
-        <div className="container flex flex-col mx-auto items-center">
-            <h1 className="text-4xl text-center my-8">
-                {id !== undefined ? 'Editar Postagem' : 'Cadastrar Postagem'}
-            </h1>
+        <div className="container flex flex-col mx-auto items-center bg-slate-700">
+    <h1 className="text-4xl text-center my-8 text-white">
+        {id !== undefined ? 'Editar Postagem' : 'Cadastrar Postagem'}
+    </h1>
 
-            <form className="flex flex-col w-1/2 gap-4" onSubmit={gerarNovaPostagem}>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="titulo">Título da Postagem</label>
-                    <input
-                        type="text"
-                        placeholder="Titulo"
-                        name="titulo"
-                        required
-                        className="border-2 border-slate-700 rounded p-2"
-                        value={postagem.titulo}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                    />
-                </div>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="titulo">Texto da Postagem</label>
-                    <input
-                        type="text"
-                        placeholder="Texto"
-                        name="texto"
-                        required
-                        className="border-2 border-slate-700 rounded p-2"
-                        value={postagem.texto}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                    />
-                </div>
-                <div className="flex flex-col gap-2">
-                    <p>Tema da Postagem</p>
-                    <select name="tema" id="tema" className='border p-2 border-slate-800 rounded'
-                        onChange={(e) => buscarTemaPorId(e.currentTarget.value)}
-                    >
-                        <option value="" selected disabled>Selecione um Tema</option>
-
-                        {temas.map((tema) => (
-                            <>
-                                <option value={tema.id} >{tema.descricao}</option>
-                            </>
-                        ))}
-
-                    </select>
-                </div>
-                <button
-                    type='submit'
-                    className='rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800
-                               text-white font-bold w-1/2 mx-auto py-2 flex justify-center'
-                    disabled={carregandoTema}
-                >
-                    {isLoading ?
-                        <RotatingLines
-                            strokeColor="white"
-                            strokeWidth="5"
-                            animationDuration="0.75"
-                            width="24"
-                            visible={true}
-                        /> :
-                        <span>{id !== undefined ? 'Atualizar' : 'Cadastrar'}</span>
-                    }
-                </button>
-            </form>
+    <form className="flex flex-col w-1/2 gap-4" onSubmit={gerarNovaPostagem}>
+        <div className="flex flex-col w-full">
+            <label htmlFor="titulo" className="text-white">Título da Postagem*</label>
+            <div className="p-[2px] bg-gradient-to-r from-purple-500 to-indigo-500 rounded">
+                <input
+                    type="text"
+                    id="titulo"
+                    name="titulo"
+                    placeholder="Título"
+                    className="w-full bg-white dark:bg-zinc-900 text-white placeholder:text-slate-400 border-none rounded p-2 focus:outline-none"
+                    value={postagem.titulo}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                />
+            </div>
         </div>
+
+        <div className="flex flex-col w-full">
+            <label htmlFor="texto" className="text-white">Texto da Postagem*</label>
+            <div className="p-[2px] bg-gradient-to-r from-purple-500 to-indigo-500 rounded">
+                <input
+                    type="text"
+                    id="texto"
+                    name="texto"
+                    placeholder="Texto"
+                    className="w-full bg-white dark:bg-zinc-900 text-white placeholder:text-slate-400 border-none rounded p-2 focus:outline-none"
+                    value={postagem.texto}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                />
+            </div>
+        </div>
+
+        <div className="flex flex-col w-full">
+            <label htmlFor="tema" className="text-white">Tema da Postagem*</label>
+            <div className="p-[2px] bg-gradient-to-r from-purple-500 to-indigo-500 rounded">
+                <select
+                    name="tema"
+                    id="tema"
+                    className="w-full bg-white dark:bg-zinc-900 text-white placeholder:text-slate-400 border-none rounded p-2 focus:outline-none"
+                    onChange={(e) => buscarTemaPorId(e.currentTarget.value)}
+                >
+                    <option value="" selected disabled>Selecione um Tema</option>
+                    {temas.map((tema) => (
+                        <option value={tema.id}>{tema.descricao}</option>
+                    ))}
+                </select>
+            </div>
+        </div>
+
+        <button
+            type="submit"
+            className="rounded disabled:bg-slate-400 bg-indigo-400 hover:bg-indigo-800 text-white font-bold w-1/2 mx-auto py-2 flex justify-center"
+            disabled={carregandoTema}
+        >
+            {isLoading ? (
+                <RotatingLines
+                    strokeColor="white"
+                    strokeWidth="5"
+                    animationDuration="0.75"
+                    width="24"
+                    visible={true}
+                />
+            ) : (
+                <span>{id !== undefined ? 'Atualizar' : 'Cadastrar'}</span>
+            )}
+        </button>
+    </form>
+</div>
+
     );
 }
 
